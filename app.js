@@ -9,9 +9,9 @@ const app = express();
  */
 console.log('|———————————————————————————————|');
 console.log('|                               |');
-console.log('|        服务器启动中           |');
+console.log('|        服务器启动中             |');
 app.listen(3000, function () {
-    console.log('|    服务器启动成功             |');
+    console.log('|        服务器启动成功           |');
     console.log('|     http://localhost:3000     |');
     console.log('|                               |');
     console.log('|———————————————————————————————|');
@@ -48,7 +48,7 @@ const getJFYouZan = () => new Promise((resolve, reject) => {
             const down = [];
             days.forEach((item, index) => {
                 down.push({
-                    [item]: num[index],
+                    [item.match(/\d{4}-\d{2}-\d{2}/)[0]]: ~~(num[index].match(/\d+/)[0]),
                 })
             })
             const yz = {
@@ -101,7 +101,7 @@ const getBDLingShou = () => new Promise((resolve, reject) => {
  * Api
  */
 
-// 聚丰开放平台--有赞批发网
+// 百度移动开放平台--零售开店宝 
 app.get('/jfyouzan', (req, res) => {
     getJFYouZan().then(data => res.send(data));
 });
